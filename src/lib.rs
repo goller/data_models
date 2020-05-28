@@ -33,7 +33,7 @@
 /// * long
 /// * long long
 ///
-/// The standard but does not specify the exact number of bits for each type.
+/// The standard does not specify the exact number of bits for each type.
 /// A platform or vendor-dependent data model specifies the exact bit widths.
 ///
 /// The names of the models are conventions where the type is signified by a
