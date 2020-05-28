@@ -1,7 +1,11 @@
 [package]
 name = "data_models"
-version = "0.1.0"
+version = "0.1.1"
 authors = ["Chris Goller <goller@gmail.com>"]
 edition = "2018"
+description = "This library is used to lookup the sizes of various C-types of historical data models."
+license = "MIT"
+repository = "https://github.com/goller/data_models"
+readme = "README.md"
 
 [dependencies]
