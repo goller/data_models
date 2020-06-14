@@ -60,24 +60,25 @@
 /// 1. J. R. Mashey.  The long road to 64 bits. ACM Queue Magazine, 4(8):24–35, 1996.
 /// 2. T. Lauer.  Porting to Win32: A Guide to Making Your Applications Ready for the 32-Bit Future of Windows. Springer, 1996.
 ///
+#[derive(Debug, PartialEq)]
 pub enum DataModel {
     //           char,  short, int, long, long long, pointer, example
     /// 16-bit integer and pointer (16-bit PDP-11)
-    IP16, //  8,    --,    16,  --,   --,        16,       16-bit PDP-11
+    IP16, //     8,    --,    16,  --,   --,        16,       16-bit PDP-11
     /// 16-bit integer and pointer and 32-bit long (32-bit PDP-11)
     IP16L32, //  8,    16,    16,  32,   --,        16,       32-bit PDP-11
     /// 16-bit integer, and 32-bit long and pointer (m68k Mac & win16).
-    LP32, //  8,    16,    16,  32,   64,        32,       m68k Mac; win16
+    LP32, //     8,    16,    16,  32,   64,        32,       m68k Mac; win16
     /// 32-bit integer, long, and pointer (Unix and Unix-like before mid-1990s & win32).
-    ILP32, //  8,    16,    32,  32,   64,        32,       unix < mid-1990; win32
+    ILP32, //    8,    16,    32,  32,   64,        32,       unix < mid-1990; win32
     /// 32-bit integer, long, and 64-bit pointer (windows after XP).
-    LLP64, //  8,    16,    32,  32,   64,        64,       win >= XP
+    LLP64, //    8,    16,    32,  32,   64,        64,       win >= XP
     /// 32-bit integer, 64-bit long and pointer (Unix/Linux after the 1990s).
-    LP64, //  8,    16,    32,  64,   64,        64,       unix/linux > 1990s
+    LP64, //     8,    16,    32,  64,   64,        64,       unix/linux > 1990s
     /// 64-bit integer, long and pointer (SPARC64 from hal/fujitsu I think).
-    ILP64, //  8,    16,    64,  64,   64,        64,       hal/fujitsu
+    ILP64, //    8,    16,    64,  64,   64,        64,       hal/fujitsu
     /// 64-bit short, integer, long and pointer (UNICOS from Cray).
-    SILP64, //  8,    64,    64,  64,   64,        64,       cray
+    SILP64, //   8,    64,    64,  64,   64,        64,       cray
     /// Sentinel value for unknown model.
     Unknown, //  I'd love to see more platforms here !
 }
@@ -378,14 +379,12 @@ mod tests {
 
     #[test]
     fn test_new() {
-        // All the u8 casts are to remove the Debug and PartialEq from
-        // the DataModel enum; they were making the docs look bad to me.
-        assert_eq!(DataModel::IP16 as u8, DataModel::new(2, 0, 2) as u8);
-        assert_eq!(DataModel::IP16L32 as u8, DataModel::new(2, 4, 2) as u8);
-        assert_eq!(DataModel::LP32 as u8, DataModel::new(2, 4, 4) as u8);
-        assert_eq!(DataModel::ILP32 as u8, DataModel::new(4, 4, 4) as u8);
-        assert_eq!(DataModel::LLP64 as u8, DataModel::new(4, 4, 8) as u8);
-        assert_eq!(DataModel::LP64 as u8, DataModel::new(4, 8, 8) as u8);
-        assert_eq!(DataModel::ILP64 as u8, DataModel::new(8, 8, 8) as u8);
+        assert_eq!(DataModel::IP16, DataModel::new(2, 0, 2));
+        assert_eq!(DataModel::IP16L32, DataModel::new(2, 4, 2));
+        assert_eq!(DataModel::LP32, DataModel::new(2, 4, 4));
+        assert_eq!(DataModel::ILP32, DataModel::new(4, 4, 4));
+        assert_eq!(DataModel::LLP64, DataModel::new(4, 4, 8));
+        assert_eq!(DataModel::LP64, DataModel::new(4, 8, 8));
+        assert_eq!(DataModel::ILP64, DataModel::new(8, 8, 8));
     }
 }
