@@ -1,5 +1,4 @@
 #![feature(min_specialization)]
-#![feature(const_fn)]
 //! A data model is the choices of bit width of integer types by each platform.
 //!
 //! This library is used to lookup the sizes of various C-types of a data model.
